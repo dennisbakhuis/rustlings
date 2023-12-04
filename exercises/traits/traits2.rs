@@ -8,13 +8,19 @@
 //
 // Execute `rustlings hint traits2` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
 
 trait AppendBar {
     fn append_bar(self) -> Self;
 }
 
 // TODO: Implement trait `AppendBar` for a vector of strings.
+impl AppendBar for Vec<String> {
+    fn append_bar(mut self) -> Self {
+        self.push(String::from("Bar"));
+        self
+    }
+}
+
 
 #[cfg(test)]
 mod tests {
@@ -27,3 +33,11 @@ mod tests {
         assert_eq!(foo.pop().unwrap(), String::from("Foo"));
     }
 }
+
+// Notice how the trait takes ownership of 'self',and returns `Self`.
+// Try mutating the incoming string vector. Have a look at the tests to see
+// what the result should look like!
+//
+// Vectors provide suitable methods for adding an element at the end. See
+// the documentation at: https://doc.rust-lang.org/std/vec/struct.Vec.html
+
